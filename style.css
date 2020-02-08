@@ -1,0 +1,48 @@
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.4rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 96rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.page__title {
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 2rem 0;
+}
+
+.page__restaurants {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1rem;
+}
+
+.page__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item__title {
+
+}
