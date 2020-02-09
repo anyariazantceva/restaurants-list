@@ -1,6 +1,5 @@
 let listContainer = document.querySelector('.page__restaurants');
 let ascBtn = document.querySelector('.btn__asc');
-let descBtn = document.querySelector('.btn__desc');
 let flag = true;
 fetch('restaurants.json')
     .then(res => res.json())
@@ -12,11 +11,7 @@ fetch('restaurants.json')
             clearContainer();
             renderList(sortedArr);
         })
-        // descBtn.addEventListener('click', () => {
-        //     let sortedArr = sortDesc(restaurants);
-        //     clearContainer();
-        //     renderList(sortedArr);
-        // })
+
     });
 
 const createItem = (item) => {
@@ -24,10 +19,14 @@ const createItem = (item) => {
     let imageWrapper = createElement('div', 'item__picture-wrapper');
     let itemPic = createElement('img', 'item__image');
     let itemTitle = createElement('div', 'item__title');
+    let cityTitle = createElement('div', 'item__city-title');
+    let desc = createElement('div', 'item__desc');
     itemTitle.textContent = item.name;
+    desc.textContent = `Description: ${item.description}`;
     itemPic.setAttribute('src', item.image);
+    cityTitle.textContent = `City: ${item.city}`;
     imageWrapper.append(itemPic);
-    itemBlock.append(imageWrapper, itemTitle);
+    itemBlock.append(imageWrapper, itemTitle, cityTitle, desc);
     return itemBlock
 };
 
