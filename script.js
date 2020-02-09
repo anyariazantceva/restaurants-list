@@ -1,21 +1,22 @@
 let listContainer = document.querySelector('.page__restaurants');
 let ascBtn = document.querySelector('.btn__asc');
 let descBtn = document.querySelector('.btn__desc');
+let flag = true;
 fetch('restaurants.json')
     .then(res => res.json())
     .then((data) => {
         const restaurants = data.restaurants;
         renderList(restaurants);
         ascBtn.addEventListener('click', () => {
-            let sortedArr = sortAsc(restaurants);
+            let sortedArr = flag ? sortAsc(restaurants) : sortDesc(restaurants);
             clearContainer();
             renderList(sortedArr);
         })
-        descBtn.addEventListener('click', () => {
-            let sortedArr = sortDesc(restaurants);
-            clearContainer();
-            renderList(sortedArr);
-        })
+        // descBtn.addEventListener('click', () => {
+        //     let sortedArr = sortDesc(restaurants);
+        //     clearContainer();
+        //     renderList(sortedArr);
+        // })
     });
 
 const createItem = (item) => {
@@ -49,19 +50,24 @@ const clearContainer = () => {
 };
 
 const sortAsc = (arr) => {
+    flag = false;
     let sortedArr = arr.sort(function(a, b){
         if(a.name < b.name) {
             return -1;
         }
     });
+    ascBtn.textContent = 'Sort Z to A';
     return sortedArr
 };
 
 const sortDesc = (arr) => {
+    flag = true;
     let sortedArr = arr.sort(function(a, b) {
         if(a.name > b.name) {
             return -1;
         }
-    })
+    });
+    ascBtn.textContent = 'Sort A to Z';
     return sortedArr;
-}
+};
+
